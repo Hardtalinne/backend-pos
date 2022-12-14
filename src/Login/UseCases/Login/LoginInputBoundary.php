@@ -9,7 +9,8 @@ use Exception;
 
 final class LoginInputBoundary
 {
-    private Login $login;
+    private string $user;
+    private string $password;
 
     public function __construct(string $user, string $password)
     {

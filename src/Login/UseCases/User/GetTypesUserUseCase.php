@@ -15,22 +15,12 @@ final class GetTypesUserUseCase
 
     public function __construct(
         UserApiRepositoryInterface $userApiRepository,
-    )
-    {
+    ) {
         $this->userApiRepository = $userApiRepository;
     }
 
     public function handle(): ?array
     {
-        try {
-            return $this->userApiRepository->findAllTypeUser();
-
-        } catch (Exception $exception) {
-            if ($exception instanceof UserDomainException) {
-                throw $exception;
-            }
-
-            throw new Exception("Erro", $exception->getCode());
-        }
+        return $this->userApiRepository->findAllTypeUser();
     }
 }

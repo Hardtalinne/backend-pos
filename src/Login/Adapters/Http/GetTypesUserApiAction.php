@@ -14,18 +14,12 @@ class GetTypesUserApiAction extends PayloadAction
 
     public function __construct(
         GetTypesUserUseCase $getTypesUserUseCase,
-    )
-    {
+    ) {
         $this->getTypesUserUseCase = $getTypesUserUseCase;
     }
 
     protected function handle(): array
     {
-        try {
-            return $this->getTypesUserUseCase->handle();
-
-        } catch (Exception $exception) {
-            throw new Exception($exception->getMessage(), $exception->getCode());
-        }
+        return $this->getTypesUserUseCase->handle();
     }
 }

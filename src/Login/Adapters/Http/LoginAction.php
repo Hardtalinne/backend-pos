@@ -25,8 +25,7 @@ class LoginAction extends PayloadAction
         LoginUseCase       $loginUseCase,
         CreateTokenUseCase $createTokenUseCase,
         ContainerInterface $container
-    )
-    {
+    ) {
         $this->loginUseCase = $loginUseCase;
         $this->createTokenUseCase = $createTokenUseCase;
         $this->container = $container;
