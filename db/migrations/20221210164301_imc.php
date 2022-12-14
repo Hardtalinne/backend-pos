@@ -10,7 +10,7 @@ final class Imc extends AbstractMigration
     {
         $players = $this->table('imc');
 
-        $players->addColumn('imc', 'integer')
+        $players->addColumn('imc', 'float')
             ->addColumn('data', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
             ->addColumn('id_aluno', 'integer')
             ->addColumn('id_profissional', 'integer')

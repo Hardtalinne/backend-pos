@@ -15,7 +15,7 @@ final class Usuario extends AbstractMigration
             ->addColumn('senha', 'string', ['limit' => 100])
             ->addColumn('tipo_usuario', 'integer')
             ->addColumn('email', 'string', ['limit' => 100, 'null' => true])
-            ->addColumn('created_at', 'datetime', ['null' => true])
+            ->addColumn('created_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
             ->addForeignKey('tipo_usuario', 'public.tipo_usuario')
             ->create();
     }
