@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 use App\Api\Adapters\Http\ApiAction;
-
+use App\CalculationImc\Adapters\Http\CalculationImcApiAction;
 use App\Login\Adapters\Http\CreateUserApiAction;
 use App\Login\Adapters\Http\LoginAction;
 use App\Login\Adapters\Http\ValidateTokenAction;
@@ -19,6 +19,7 @@ use App\Middleware\AuthenticationMiddleware;
 use App\Middleware\CorsMiddleware;
 use App\Middleware\ExceptionNotFoundMiddleware;
 use App\Middleware\SentryMiddleware;
+use App\Reports\Adapters\Http\ReportImcApiAction;
 use App\Reports\Adapters\Http\ReportUserApiAction;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface;
@@ -48,7 +49,9 @@ $app->group('/api', function (RouteCollectorProxyInterface $group) {
     $group->post('/login', LoginAction::class);
     $group->post('/authorization', ValidateTokenAction::class);
     $group->get('/me', GetUserMeApiAction::class)->add(AuthenticationMiddleware::class);
-    $group->post('/user', CreateUserApiAction::class)->add(AuthenticationMiddleware::class);
+    $group->post('/user', CreateUserApiAction::class); //->add(AuthenticationMiddleware::class);
     $group->get('/user/{type_user}', ReportUserApiAction::class)->add(AuthenticationMiddleware::class);
     $group->get('/types-users', GetTypesUserApiAction::class)->add(AuthenticationMiddleware::class);
+    $group->post('/calculate-imc', CalculationImcApiAction::class)->add(AuthenticationMiddleware::class);
+    $group->get('/imc/{id_user}', ReportImcApiAction::class)->add(AuthenticationMiddleware::class);
 });

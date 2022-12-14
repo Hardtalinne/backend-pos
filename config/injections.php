@@ -1,5 +1,7 @@
 <?php
 
+use App\CalculationImc\Adapters\Repositories\CalculationImcApiRepository;
+use App\CalculationImc\UseCases\Contracts\CalculationImcRepositoryInterface;
 use App\Shared\Adapters\Contracts\HttpClient;
 use App\Shared\Adapters\Contracts\DatabaseDriver;
 use App\Shared\Adapters\Contracts\ValidatorTool;
@@ -18,7 +20,9 @@ use App\Shared\Infra\GuzzleHttpClient;
 use App\Shared\Infra\RespectValidation;
 use App\Login\Adapters\Repositories\UserApiRepository;
 use App\Login\UseCases\Contracts\UserApiRepositoryInterface;
+use App\Reports\Adapters\Repositories\ReportImcRepository;
 use App\Reports\Adapters\Repositories\ReportUserApiRepository;
+use App\Reports\UseCases\Contracts\ReportImcRepositoryInterface;
 use App\Reports\UseCases\Contracts\ReportUserRepositoryInterface;
 
 $injections = [
@@ -35,5 +39,8 @@ $injections = [
     //Login
     UserApiRepositoryInterface::class => DI\autowire(UserApiRepository::class),
     ReportUserRepositoryInterface::class => DI\autowire(ReportUserApiRepository::class),
+    ReportImcRepositoryInterface::class => DI\autowire(ReportImcRepository::class),
+    CalculationImcRepositoryInterface::class => DI\autowire(CalculationImcApiRepository::class),
+
 
 ];
