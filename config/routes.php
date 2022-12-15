@@ -49,11 +49,11 @@ $app->group('/api', function (RouteCollectorProxyInterface $group) {
     $group->post('/login', LoginAction::class);
     $group->post('/authorization', ValidateTokenAction::class);
     $group->get('/me', GetUserMeApiAction::class)->add(AuthenticationMiddleware::class);
-    $group->post('/user', CreateUserApiAction::class); //->add(AuthenticationMiddleware::class);
+    $group->post('/user', CreateUserApiAction::class)->add(AuthenticationMiddleware::class);
     $group->get('/user/{type_user}', ReportUserApiAction::class)->add(AuthenticationMiddleware::class);
     $group->get('/types-users', GetTypesUserApiAction::class)->add(AuthenticationMiddleware::class);
     $group->post('/calculate-imc', CalculationImcApiAction::class)->add(AuthenticationMiddleware::class);
-    $group->get('/imc/{id_user}', ReportImcApiAction::class); //->add(AuthenticationMiddleware::class);
+    $group->get('/imc/{id_user}', ReportImcApiAction::class)->add(AuthenticationMiddleware::class);
 
     $group->options('/login', function (Request $request, Response $response): Response {
         return $response;
