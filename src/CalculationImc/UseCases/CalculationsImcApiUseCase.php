@@ -6,6 +6,7 @@ namespace App\CalculationImc\UseCases;
 
 use App\CalculationImc\UseCases\Contracts\CalculationImcRepositoryInterface;
 use App\Shared\Helpers\Util;
+use DateTime;
 
 final class CalculationsImcApiUseCase
 {
@@ -29,7 +30,8 @@ final class CalculationsImcApiUseCase
             'imc' => $imc,
             'classificacao' => $classification,
             'aluno' => $student['nome'],
-            'personal' =>  $professional['nome']
+            'personal' =>  $professional['nome'],
+            'data' =>  (new DateTime())->format('d/m/Y')
         ];
     }
 
