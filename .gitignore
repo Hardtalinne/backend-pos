@@ -20,7 +20,7 @@ Thumbs.db
 # Mac DS_Store Files
 .DS_Store
 
-.env
+
 .docker/data
 .php_cs.cache
 .phpunit.result.cache
