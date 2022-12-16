@@ -78,4 +78,8 @@ $app->group('/api', function (RouteCollectorProxyInterface $group) {
     $group->options('/calculate-imc', function (Request $request, Response $response): Response {
         return $response;
     });
+
+    $group->options('/imc/{id_user}', function (Request $request, Response $response): Response {
+        return $response;
+    });
 });
