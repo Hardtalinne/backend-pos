@@ -57,6 +57,7 @@ final class ReportImcRepository implements ReportImcRepositoryInterface
             $row["classificacao"] = $classificacao;
             $imcs[] = ImcOutputBoundary::build($row);
         }
+
         return $imcs;
     }
 
@@ -67,10 +68,10 @@ final class ReportImcRepository implements ReportImcRepositoryInterface
                 i.imc,
                 a.nome as nome_aluno,
                 p.nome as nome_personal,
-                to_char(i.data, 'DD-MM-YYYY')  as data_avalicao
+                to_char(i.data, 'DD/MM/YYYY')  as data_avalicao
             from public.imc i
             inner join public.usuario a on a.id = i.id_aluno
-            inner join public.usuario p on a.id = i.id_profissional
-            where i.$colun = $id_user ";
+            inner join public.usuario p on p.id = i.id_profissional
+            where i.$colun = $id_user";
     }
 }
