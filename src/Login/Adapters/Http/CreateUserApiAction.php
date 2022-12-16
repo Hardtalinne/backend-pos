@@ -17,6 +17,7 @@ final class CreateUserApiAction extends PayloadAction
     private string $name;
     private string $user;
     private string $password;
+    private int $status;
     private int $type_user;
 
     public function __construct(CreateUserApiUseCase $useCase)
@@ -28,7 +29,7 @@ final class CreateUserApiAction extends PayloadAction
     {
         $this->ValidateInput($this->body);
 
-        $input = new CreateUserInputBoundary($this->name, $this->user, $this->password, $this->type_user, $this->email);
+        $input = new CreateUserInputBoundary($this->name, $this->user, $this->password, $this->status, $this->type_user, $this->email);
 
         return $this->useCase->handle($input);
     }
@@ -54,6 +55,7 @@ final class CreateUserApiAction extends PayloadAction
         $this->name = $input['name'];
         $this->user = $input['user'];
         $this->password = $input['password'];
+        $this->status =  isset($input['status']) ? intval($input['status']) : 1;
         $this->type_user = $input['type_user'];
         $this->email = $input['email'];
     }

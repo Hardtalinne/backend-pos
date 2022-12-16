@@ -50,6 +50,7 @@ $app->group('/api', function (RouteCollectorProxyInterface $group) {
     $group->post('/authorization', ValidateTokenAction::class);
     $group->get('/me', GetUserMeApiAction::class)->add(AuthenticationMiddleware::class);
     $group->post('/user', CreateUserApiAction::class);
+    $group->put('/user', CreateUserApiAction::class);
     $group->get('/user/{type_user}', ReportUserApiAction::class);
     $group->get('/types-users', GetTypesUserApiAction::class);
     $group->post('/calculate-imc', CalculationImcApiAction::class)->add(AuthenticationMiddleware::class);

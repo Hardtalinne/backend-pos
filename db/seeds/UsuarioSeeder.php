@@ -14,12 +14,14 @@ class UsuarioSeeder extends AbstractSeed
                 'nome' => 'Renan Personal',
                 'usuario' => 'renan.personal',
                 'senha' => '$2y$10$aqqaG/mKqqXl7fQiU3.0gekfKcdaqsKdJQ3gvJPOyb344BvN4yKUe',
+                'status' => 1,
                 'tipo_usuario' => 2
             ],
             [
                 'nome' => 'Aline Aluna',
                 'usuario' => 'aline.aluna',
                 'senha' => '$2y$10$aqqaG/mKqqXl7fQiU3.0gekfKcdaqsKdJQ3gvJPOyb344BvN4yKUe',
+                'status' => 1,
                 'tipo_usuario' => 1
             ],
         ];

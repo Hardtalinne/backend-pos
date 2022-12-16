@@ -12,15 +12,17 @@ final class CreateUserInputBoundary
     private string $name;
     private string $user;
     private string $password;
+    private int $status;
     private int $type_user;
     private string $email;
 
-    public function __construct(string $name, string $user, string $password, int $type_user, string $email)
+    public function __construct(string $name, string $user, string $password, int $status, int $type_user, string $email)
     {
         try {
             $this->name = $name;
             $this->user = $user;
             $this->password = $password;
+            $this->status = $status;
             $this->type_user = $type_user;
             $this->email = $email;
         } catch (Exception $exception) {
@@ -61,8 +63,8 @@ final class CreateUserInputBoundary
         return $this->email;
     }
 
-    public function setEmail(string $email): void
+    public function getStatus(): int
     {
-        $this->email = $email;
+        return $this->status;
     }
 }

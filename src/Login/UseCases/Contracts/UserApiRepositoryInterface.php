@@ -10,9 +10,9 @@ use App\Shared\Domain\Entity\Usuario;
 
 interface UserApiRepositoryInterface
 {
-    public function findUserApi(string $user): ?Usuario;
+    public function saveUserApi(CreateUserInputBoundary $input): void;
 
-    public function insertUserApi(CreateUserInputBoundary $input): void;
+    public function findUserApi(string $user): ?Usuario;
 
     public function findUserApiById(int $id): ?Usuario;
 

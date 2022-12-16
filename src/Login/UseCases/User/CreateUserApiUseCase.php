@@ -28,17 +28,13 @@ final class CreateUserApiUseCase
     {
         try {
             $this->connection->beginTransaction();
-            $login = $this->userApiRepository->findUserApi($input->getUser());
 
-            if (isset($login)) {
-                throw new UserDomainException("Usuário já cadastrado.", StatusCodeInterface::STATUS_BAD_REQUEST);
-            }
+            $this->userApiRepository->saveUserApi($input);
 
-            $this->userApiRepository->insertUserApi($input);
             $this->connection->commit();
 
             return [
-                "message" => "Usuário {$input->getUser()} cadastrado com sucesso!"
+                "message" => "Usuário {$input->getUser()} salvo com sucesso!"
             ];
         } catch (Exception $exception) {
             $this->connection->rollback();

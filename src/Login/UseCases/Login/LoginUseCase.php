@@ -27,7 +27,7 @@ final class LoginUseCase
             $login = $this->userApiRepository->findUserApi($user);
 
             if (!$login) {
-                throw new Exception("Não foi encontrado nenhum usuario.", StatusCodeInterface::STATUS_BAD_REQUEST);
+                throw new Exception("Não foi encontrado nenhum usuario ou usuario inativo.", StatusCodeInterface::STATUS_BAD_REQUEST);
             }
 
             $verifyPassword =  password_verify($input->getPassword(), $login->getSenha());
