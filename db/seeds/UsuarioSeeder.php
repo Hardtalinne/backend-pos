@@ -11,6 +11,12 @@ class UsuarioSeeder extends AbstractSeed
 
         $data = [
             [
+                'nome' => 'Admin',
+                'usuario' => 'admin',
+                'senha' => '$2y$10$aqqaG/mKqqXl7fQiU3.0gekfKcdaqsKdJQ3gvJPOyb344BvN4yKUe',
+                'status' => 1,
+                'tipo_usuario' => 1
+            ], [
                 'nome' => 'Renan Personal',
                 'usuario' => 'renan.personal',
                 'senha' => '$2y$10$aqqaG/mKqqXl7fQiU3.0gekfKcdaqsKdJQ3gvJPOyb344BvN4yKUe',
@@ -22,8 +28,8 @@ class UsuarioSeeder extends AbstractSeed
                 'usuario' => 'aline.aluna',
                 'senha' => '$2y$10$aqqaG/mKqqXl7fQiU3.0gekfKcdaqsKdJQ3gvJPOyb344BvN4yKUe',
                 'status' => 1,
-                'tipo_usuario' => 1
-            ],
+                'tipo_usuario' => 3
+            ]
         ];
 
         $usuarios = $this->table('usuario');

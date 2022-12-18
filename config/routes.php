@@ -54,7 +54,7 @@ $app->group('/api', function (RouteCollectorProxyInterface $group) {
     $group->get('/user/{type_user}', ReportUserApiAction::class);
     $group->get('/types-users', GetTypesUserApiAction::class);
     $group->post('/calculate-imc', CalculationImcApiAction::class)->add(AuthenticationMiddleware::class);
-    $group->get('/imc/{id_user}', ReportImcApiAction::class)->add(AuthenticationMiddleware::class);
+    $group->get('/imc', ReportImcApiAction::class)->add(AuthenticationMiddleware::class);
 
     $group->options('/login', function (Request $request, Response $response): Response {
         return $response;

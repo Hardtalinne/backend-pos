@@ -40,10 +40,11 @@ final class ReportImcRepository implements ReportImcRepositoryInterface
         return $rows['tipo_usuario'];
     }
 
-    public function findImcs(int $id_user, int $type_user): array
+    public function findImcs(int $id_user, int $type_user, string $data_avalicao): array
     {
-        $colun =  $type_user != 1 ? 'id_profissional' : 'id_aluno';
-        $sql = $this->getSQL($colun, $id_user);
+        $colun =  $type_user != 3 ? 'id_profissional' : 'id_aluno';
+        $data_avalicao = $data_avalicao != 0 ? "and to_char(i.data, 'DD-MM-YYYY') >= '$data_avalicao'" : '';
+        $sql = $this->getSQL($colun, $id_user, $data_avalicao);
 
         $rows = $this->databaseDriver
             ->executeSql($sql)
@@ -61,7 +62,7 @@ final class ReportImcRepository implements ReportImcRepositoryInterface
         return $imcs;
     }
 
-    private function getSQL(string $colun, int $id_user): string
+    private function getSQL(string $colun, int $id_user, string $data_avalicao): string
     {
         return "
             select 
@@ -72,6 +73,9 @@ final class ReportImcRepository implements ReportImcRepositoryInterface
             from public.imc i
             inner join public.usuario a on a.id = i.id_aluno
             inner join public.usuario p on p.id = i.id_profissional
-            where i.$colun = $id_user";
+            where 
+                i.$colun = $id_user 
+                $data_avalicao 
+            order by i.data desc";
     }
 }
