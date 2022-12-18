@@ -43,7 +43,7 @@ final class ReportImcRepository implements ReportImcRepositoryInterface
     public function findImcs(int $id_user, int $type_user, string $data_avalicao): array
     {
         $colun =  $type_user != 3 ? 'id_profissional' : 'id_aluno';
-        $data_avalicao = $data_avalicao != 0 ? "and to_char(i.data, 'DD-MM-YYYY') >= '$data_avalicao'" : '';
+        $data_avalicao = $data_avalicao != 0 ? "and to_char(i.data, 'YYYY-MM-DD') >= '$data_avalicao'" : '';
         $sql = $this->getSQL($colun, $id_user, $data_avalicao);
 
         $rows = $this->databaseDriver
