@@ -5,6 +5,7 @@ namespace App\Login\Adapters\Repositories;
 use App\Login\Domain\ValueObjects\User;
 use App\Login\UseCases\Contracts\UserApiRepositoryInterface;
 use App\Login\UseCases\User\CreateUserInputBoundary;
+use App\Shared\Adapters\Contracts\QueryBuilder\DeleteStatement;
 use App\Shared\Adapters\Contracts\QueryBuilder\InsertStatement;
 use App\Shared\Adapters\Contracts\QueryBuilder\SelectStatement;
 use App\Shared\Adapters\Contracts\QueryBuilder\UpdateStatement;
@@ -19,15 +20,18 @@ final class UserApiRepository implements UserApiRepositoryInterface
     private SelectStatement $selectStatement;
     private InsertStatement $insertStatement;
     private UpdateStatement $updateStatement;
+    private DeleteStatement $delete;
 
     public function __construct(
         SelectStatement $selectStatement,
         InsertStatement $insertStatement,
-        UpdateStatement $updateStatement
+        UpdateStatement $updateStatement,
+        DeleteStatement $delete
     ) {
         $this->selectStatement = $selectStatement;
         $this->insertStatement = $insertStatement;
         $this->updateStatement = $updateStatement;
+        $this->delete = $delete;
     }
 
     public function findUserApi(string $user): ?Usuario
@@ -132,6 +136,18 @@ final class UserApiRepository implements UserApiRepositoryInterface
                 ->from("public.tipo_usuario")->fetchAll();
         } catch (Exception $exception) {
             throw new Exception("Ocorreu uma exceção durante a execução da busca pelo tipo de usuário.", StatusCodeInterface::STATUS_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function removeUserApi(int $id_usuario): void
+    {
+        try {
+            $this->delete
+                ->table("public.usuario")
+                ->conditions(["id" => $id_usuario])
+                ->delete();
+        } catch (Exception $e) {
+            throw new Exception("Ocorreu uma exceção durante a exclusao do  usuário.", StatusCodeInterface::STATUS_INTERNAL_SERVER_ERROR);
         }
     }
 }

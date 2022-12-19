@@ -11,6 +11,7 @@ use App\Shared\Domain\Entity\Usuario;
 interface UserApiRepositoryInterface
 {
     public function saveUserApi(CreateUserInputBoundary $input): void;
+    public function removeUserApi(int $id_usuario): void;
 
     public function findUserApi(string $user): ?Usuario;
 

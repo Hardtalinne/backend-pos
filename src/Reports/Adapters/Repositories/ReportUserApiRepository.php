@@ -44,6 +44,7 @@ final class ReportUserApiRepository implements ReportUserRepositoryInterface
                 FROM public.usuario 
                 WHERE 
                     tipo_usuario $type_user
-                    $name";
+                    $name
+                order by nome asc";
     }
 }

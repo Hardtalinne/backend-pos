@@ -11,6 +11,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Api\Adapters\Http\ApiAction;
 use App\CalculationImc\Adapters\Http\CalculationImcApiAction;
 use App\Login\Adapters\Http\CreateUserApiAction;
+use App\Login\Adapters\Http\DeleteUserApiAction;
 use App\Login\Adapters\Http\LoginAction;
 use App\Login\Adapters\Http\ValidateTokenAction;
 use App\Middleware\AuthenticationMiddleware;
@@ -55,6 +56,7 @@ $app->group('/api', function (RouteCollectorProxyInterface $group) {
     $group->get('/types-users', GetTypesUserApiAction::class);
     $group->post('/calculate-imc', CalculationImcApiAction::class)->add(AuthenticationMiddleware::class);
     $group->get('/imc', ReportImcApiAction::class)->add(AuthenticationMiddleware::class);
+    $group->delete('/user/{id}', DeleteUserApiAction::class)->add(AuthenticationMiddleware::class);
 
     $group->options('/login', function (Request $request, Response $response): Response {
         return $response;
