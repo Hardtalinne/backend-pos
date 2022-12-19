@@ -9,6 +9,10 @@ use App\Shared\Helpers\DTO;
 final class UserOutputBoundary extends DTO
 {
     public int $id;
+
     public string $nome;
     public int $tipoUsuario;
+    public ?string $email;
+
+    public string $usuario;
 }
