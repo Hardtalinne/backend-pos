@@ -1,7 +1,6 @@
 #### Rodando o projeto
 
 -   Fazer uma cópia do arquivo .env e remover o .example do final
--   ajustar arquivo .env com seus valores
 -   No terminal rodar: **docker-compose up -d**
 -   Entrar no container do app: **docker exec -it trabalho-app bash**
     -   Instalar as bibliotecas: **composer install**
