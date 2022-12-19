@@ -81,4 +81,8 @@ $app->group('/api', function (RouteCollectorProxyInterface $group) {
     $group->options('/imc', function (Request $request, Response $response): Response {
         return $response;
     });
+
+    $group->options('/user/{id}', function (Request $request, Response $response): Response {
+        return $response;
+    });
 });
