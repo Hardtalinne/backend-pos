@@ -110,7 +110,7 @@ final class UserApiRepository implements UserApiRepositoryInterface
         try {
             $usuario = new Usuario();
             $row = $this->selectStatement
-                ->select()
+                ->select(['id', 'nome', 'tipo_usuario', 'usuario'])
                 ->from("public.usuario")
                 ->where("id", $id)
                 ->fetchOne();
