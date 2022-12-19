@@ -18,12 +18,13 @@ final class ReportUserApiRepository implements ReportUserRepositoryInterface
         $this->databaseDriver = $databaseDriver;
     }
 
-    public function findAllUsers(int $type_user, string $name): ?array
+    public function findAllUsers(int $type_user, string $name, int $id): ?array
     {
+        $id = $id > 0 ? "and id = '$id'" : '';
         $type_user = $type_user > 0 ? "in ($type_user)" : 'in(1,2,3)';
         $name = $name != '' ? "and nome ilike '%$name%'" : '';
-        $sql = $this->getSql($type_user, $name);
 
+        $sql = $this->getSql($type_user, $name, $id);
 
         $rows = $this->databaseDriver
             ->executeSql($sql)
@@ -37,7 +38,7 @@ final class ReportUserApiRepository implements ReportUserRepositoryInterface
         return $usuarios;
     }
 
-    private function  getSql(string $type_user, string $name): string
+    private function  getSql(string $type_user, string $name, string $id): string
     {
         return "SELECT 
                     * 
@@ -45,6 +46,7 @@ final class ReportUserApiRepository implements ReportUserRepositoryInterface
                 WHERE 
                     tipo_usuario $type_user
                     $name
+                    $id
                 order by nome asc";
     }
 }

@@ -6,5 +6,5 @@ namespace App\Reports\UseCases\Contracts;
 
 interface ReportUserRepositoryInterface
 {
-    public function findAllUsers(int $type_user, string $name): ?array;
+    public function findAllUsers(int $type_user, string $name, int $id): ?array;
 }

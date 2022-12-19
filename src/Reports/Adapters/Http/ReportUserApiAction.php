@@ -14,6 +14,7 @@ final class ReportUserApiAction extends PayloadAction
     private ReportUserApiUseCase $useCase;
     private int $type_user = 0;
     private String $name = "";
+    private int $id = 0;
 
     public function __construct(ReportUserApiUseCase $useCase)
     {
@@ -23,7 +24,7 @@ final class ReportUserApiAction extends PayloadAction
     protected function handle(): array
     {
         $this->ValidateInput($this->request->getQueryParams());
-        return  $this->useCase->handle($this->type_user, $this->name);
+        return  $this->useCase->handle($this->type_user, $this->name, $this->id);
     }
 
     protected function ValidateInput(array $input)
@@ -34,6 +35,10 @@ final class ReportUserApiAction extends PayloadAction
 
         if (!empty($input['name'])) {
             $this->name = $input['name'];
+        }
+
+        if (!empty($input['id'])) {
+            $this->id = intval($input['id']);
         }
     }
 }

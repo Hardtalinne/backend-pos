@@ -16,9 +16,9 @@ final class ReportUserApiUseCase
         $this->reportUser = $reportUser;
     }
 
-    public function handle(int $type_user, string $name): ?array
+    public function handle(int $type_user, string $name, int $id): ?array
     {
-        $Users = $this->reportUser->findAllUsers($type_user, $name);
+        $Users = $this->reportUser->findAllUsers($type_user, $name, $id);
 
         return $Users;
     }
