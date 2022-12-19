@@ -5,6 +5,8 @@
 -   Entrar no container do app: **docker exec -it trabalho-app bash**
     -   Instalar as bibliotecas: **composer install**
 
+#### Documentação das API via INSOMINIA dentro da pasta docs
+
 #### Configurando o banco pelo PgAdmin (instalado pelo docker)
 
 -   Acesse: **localhost:5050**
